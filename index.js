@@ -6,7 +6,8 @@ var path = require('path'),
     handlebar = require('handlebars'),
     fs = require('fs'),
     execFile = require('child_process').execFile,
-    requireUncached = require('require-uncached');
+    requireUncached = require('require-uncached'),
+    phantomjsPath = require('phantomjs').path;
 
 /*
  * Global variables
@@ -49,7 +50,7 @@ function cleanup(path) {
   * [jasmine-runner.js, specRunner.html]
   **/
 function runPhantom(childArguments, onComplete) {
-    execFile('phantomjs', childArguments, function(error, stdout, stderr) {
+    execFile(phantomjsPath, childArguments, function(error, stdout, stderr) {
       var success = null;
 
       if(error !== null) {
